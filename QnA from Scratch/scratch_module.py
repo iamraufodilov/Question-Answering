@@ -1,5 +1,9 @@
 # load libraries
 import pandas as pd
+from gensim.models import Word2Vec
+from gensim.models import FastText
+import gensim
+
 
 # create function to convert json file to pd dataframe
 def json_to_df(json_file):
@@ -30,4 +34,6 @@ def json_to_df(json_file):
     return df
 
 
-#
+# we shpuld train word embedding model on our context
+# loading context
+    

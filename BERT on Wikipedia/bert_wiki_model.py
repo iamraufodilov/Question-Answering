@@ -88,7 +88,34 @@ for _, chunk in chunked_input.items():
     if ans != '[CLS]':
         answer += ans + " / "
         
-print(answer) # here we go we got answer
+print(answer) 
+
+
+# time to test
+questions = [
+    'When was Barack Obama born?',
+    'Why is the sky blue?',
+    'How many sides does a pentagon have?'
+]
+
+reader = DocumentReader("deepset/bert-base-cased-squad2") 
+
+# if you trained your own model using the training cell earlier, you can access it with this:
+#reader = DocumentReader("./models/bert/bbu_squad2")
+
+for question in questions:
+    print(f"Question: {question}")
+    results = wiki.search(question)
+
+    page = wiki.page(results[0])
+    print(f"Top wiki result: {page}")
+
+    text = page.content
+
+    reader.tokenize(question, text)
+    print(f"Answer: {reader.get_answer()}")
+    print() # here we go we got answer
+
 
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
